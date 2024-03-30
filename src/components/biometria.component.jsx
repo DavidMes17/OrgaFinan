@@ -1,4 +1,4 @@
-import { View, Text, Button, Alert } from "react-native";
+import { View, Text, Button, Alert, StyleSheet } from "react-native";
 import * as localAuthentication from 'expo-local-authentication'
 import { useEffect, useState } from "react";
 
@@ -6,6 +6,7 @@ export default function Biometria({ navigation }) {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     useEffect(()=>{Compatibilidade()},[])
     useEffect(()=>{VerificarBiometria()},[])
+    useEffect(()=>{Biometria()},[])
 
     async function Compatibilidade() {
         const compativel = await localAuthentication.hasHardwareAsync()
@@ -35,11 +36,16 @@ export default function Biometria({ navigation }) {
         }
     }
     
-    return (<>
+    return (<View style={styles.container}>
         <View>
-            
             <Text>Testando navegação?</Text>
             <Button title='Navegar' onPress={Biometria} />
         </View>
-    </>)
+    </View>)
 }
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 25,
+    }
+})
