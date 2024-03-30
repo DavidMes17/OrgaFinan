@@ -16,32 +16,23 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import Biometria from './src/components/biometria.component';
+import Topo from './src/components/topo.conponent';
 
 export default function App() {
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#674FFF' }, headerTintColor: '#fff' }}>
-        <Stack.Screen name='auth' component={Biometria} />
-        <Stack.Screen name='index' component={Index} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#674FFF' }, headerTintColor: '#fff' }}>
+          <Stack.Screen name='auth' component={Biometria} options={{ headerShown: false }} />
+          <Stack.Screen name='index' component={Index} options={{ headerShown: false }} />
+          <Stack.Screen name='topo' component={Topo} />
+        </Stack.Navigator>
+      </NavigationContainer>
+);
 }
 
 function Index({ navigation }) {
   return (
-    <View>
-      <Text>Navegação testada</Text>
-    </View>
+    <Topo />
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
