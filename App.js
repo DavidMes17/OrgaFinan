@@ -17,21 +17,32 @@ const Stack = createNativeStackNavigator();
 
 import Biometria from './src/components/biometria.component';
 import Topo from './src/components/topo.conponent';
+import Botoes from './src/components/botoes.component';
+import Cobranca from './src/screens/cobrança.screen';
+import Imprevisto from './src/screens/imprevisto.screen';
+import Salario from './src/screens/salário.screen';
+import Outro from './src/screens/outro.screen';
 
 export default function App() {
 
   return (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#674FFF' }, headerTintColor: '#fff' }}>
-          <Stack.Screen name='auth' component={Biometria} options={{ headerShown: false }} />
-          <Stack.Screen name='index' component={Index} options={{ headerShown: false }} />
-        </Stack.Navigator>
-      </NavigationContainer>
-);
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#674FFF' }, headerTintColor: '#fff' }}>
+        <Stack.Screen name='auth' component={Biometria} options={{ headerShown: false }} />
+        <Stack.Screen name='index' component={Index} options={{ headerShown: false }} />
+        <Stack.Screen name='COBRANÇA' component={Cobranca} />
+        <Stack.Screen name='IMPREVISTO' component={Imprevisto} />
+        <Stack.Screen name='SALÁRIO' component={Salario} />
+        <Stack.Screen name='OUTRO' component={Outro} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 function Index({ navigation }) {
   return (
-    <Topo />
-  )
+    <>
+      <Topo />
+      <Botoes navigation={navigation} />
+    </>)
 }
