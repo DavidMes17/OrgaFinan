@@ -53,7 +53,7 @@ export default function Biometria({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 25,
+        marginTop: 30,
     },
     biometriaCtn: {
         flex: 9,
