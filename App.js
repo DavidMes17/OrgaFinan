@@ -25,7 +25,6 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#674FFF' }, headerTintColor: '#fff' }}>
           <Stack.Screen name='auth' component={Biometria} options={{ headerShown: false }} />
           <Stack.Screen name='index' component={Index} options={{ headerShown: false }} />
-          <Stack.Screen name='topo' component={Topo} />
         </Stack.Navigator>
       </NavigationContainer>
 );
