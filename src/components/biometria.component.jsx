@@ -1,12 +1,12 @@
-import { View, Text, Button, Alert, StyleSheet } from "react-native";
+import { View, Text, Button, Alert, StyleSheet, ImageBackground, TouchableOpacity } from "react-native";
 import * as localAuthentication from 'expo-local-authentication'
 import { useEffect, useState } from "react";
 
 export default function Biometria({ navigation }) {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    useEffect(()=>{Compatibilidade()},[])
-    useEffect(()=>{VerificarBiometria()},[])
-    useEffect(()=>{Biometria()},[])
+    useEffect(() => { Compatibilidade() }, [])
+    useEffect(() => { VerificarBiometria() }, [])
+    useEffect(() => { Biometria() }, [])
 
     async function Compatibilidade() {
         const compativel = await localAuthentication.hasHardwareAsync()
@@ -25,7 +25,7 @@ export default function Biometria({ navigation }) {
         }
     }
 
-    async function Biometria(){
+    async function Biometria() {
         const auth = await localAuthentication.authenticateAsync({
             promptMessage: 'Biometria',
             fallbackLabel: 'Um erro ocorreu'
@@ -35,17 +35,45 @@ export default function Biometria({ navigation }) {
             navigation.replace('index')
         }
     }
-    
-    return (<View style={styles.container}>
-        <View>
-            <Text>Testando navegação?</Text>
-            <Button title='Navegar' onPress={Biometria} />
+
+    return (<>
+        <ImageBackground source={require('../assets/backgroundImage.jpg')} style={styles.biometriaCtn}>
+            <Text style={styles.biometriaTxt}>Acesse o melhor App de organização financeira com segurança</Text>
+        </ImageBackground>
+
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.biometriaBtn} onPress={Biometria}>
+                <Text style={{ fontSize: 35, color: '#fff', fontWeight: 'bold' }}>
+                    Acessar com Biometria
+                </Text>
+            </TouchableOpacity>
         </View>
-    </View>)
+    </>)
 }
 
 const styles = StyleSheet.create({
     container: {
         marginTop: 25,
-    }
+    },
+    biometriaCtn: {
+        flex: 9,
+        paddingTop: 25,
+        paddingHorizontal: 12,
+        alignItems: 'center',
+    },
+    biometriaBtn: {
+        backgroundColor: '#674FFF',
+        marginBottom: 16,
+        padding: 24,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 40,
+        marginHorizontal: 16,
+    },
+    biometriaTxt: {
+        fontSize: 50,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#fff',
+    },
 })
