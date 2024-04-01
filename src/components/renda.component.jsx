@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { PieChart } from 'react-native-svg-charts';
 
 export default function Renda() {
     const despesas = [500, 500, 80, 0.5, 25];
@@ -16,19 +15,6 @@ export default function Renda() {
         data[1] = data[1] * -1;
         corLucro = '#D94A3B';
     }
-
-    const cores = ['#FFE84F', corLucro];
-    const pieData = data
-        .filter(value => value > 0)
-        .map((value, index) => ({
-            value,
-            svg: {
-                fill: cores[index],
-                onPress: () => console.log('press', index),
-            },
-            key: `pie-${index}`,
-        }));
-
     const lucroStr = data[1].toFixed(2).toString().replace(/\./g, ',');
     const despesaStr = data[0].toFixed(2).toString().replace(/\./g, ',');
 
@@ -39,9 +25,6 @@ export default function Renda() {
             </View>
 
             <View style={styles.relatorio}>
-                <View style={styles.graficoBack}>
-                    <PieChart style={styles.grafico} data={pieData} />
-                </View>
                 <View style={styles.relatorioRetorno}>
                     <Text style={styles.relatorioTitleRetorno}>retorno do capital</Text>
                     <Text style={[styles.relatorioTxt, { color: corLucro }]}>R$ {lucroStr}</Text>
@@ -72,23 +55,8 @@ const styles = StyleSheet.create({
     relatorio: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 8,
-    },
-    graficoBack: {
-        flex: 1,
-        height: 225,
-        marginTop: 16,
-        marginRight: 16,
-        padding: 8,
-        borderRadius: 10,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#766BBF',
-    },
-    grafico:{
-        height: 225,
-        width: 225,
+        marginHorizontal: 8,
     },
     relatorioRetorno: {
         backgroundColor: '#B0A4FF',
