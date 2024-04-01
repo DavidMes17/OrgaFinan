@@ -1,15 +1,18 @@
+import { PureComponent } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
+import { PieChart } from "react-native-svg-charts";
 
 
-export default function Renda(){
+export default function Renda() {
+
     const despesas = [500, 500, 80, 0.5, 25]
     const dinheiro = 1350.63
     const despesasSoma = despesas.reduce((total, valor) => total + valor, 0)
     const lucroSoma = dinheiro - despesasSoma
+    let data = [despesasSoma, lucroSoma]
 
-    let data = [despesas.reduce((total, valor) => total + valor, 0), lucroSoma]
     corLucro = ''
-    if (data[1] > 0) {
+    if (lucroSoma > 0) {
         corLucro = '#2DED5C'
     }
     else {
@@ -17,36 +20,36 @@ export default function Renda(){
         corLucro = '#D94A3B'
     }
     const cores = ['#FFE84F', corLucro]
-    const pieData = data.map((value, index) => ({
-        value,
-        svg: {
-            fill: cores[index]
-        },
-        key: `pie-${index}`,
-    }));
-
+    const pieData = data
+        .filter((value) => value > 0)
+        .map((value, index) => ({
+            value,
+            svg: {
+                fill: cores[index]
+            },
+            key: `pie-${index}`
+        }))
     const lucroStr = data[1].toFixed(2).toString().replace(/\./g, ',')
     const despesaStr = data[0].toFixed(2).toString().replace(/\./g, ',')
 
-return(<>
-            <View style={styles.titleBack}>
-                <Text style={styles.title}>Relatório de renda</Text>
-            </View>
+    return (<>
+        <View style={styles.titleBack}>
+            <Text style={styles.title}>Relatório de renda</Text>
+        </View>
 
-            <View style={styles.relatorio}>
+        <View style={styles.relatorio}>
             <View style={styles.grafico}>
-                    <Image source={require('../assets/grafico.png')} style={{height: 217, width: 217}} />
-                </View>
-                <View style={styles.relatorioRetorno}>
-                    <Text style={styles.relatorioTitleRetorno}>retorno do capital</Text>
-                    <Text style={[styles.relatorioTxt, { color: corLucro }]}>R$ {lucroStr}</Text>
-                    <Text style={styles.relatorioTitleRetorno}>retorno dos pagamentos</Text>
-                    <Text style={[styles.relatorioTxt, styles.pagamento]}>R$ {despesaStr}</Text>
-                    <Text style={styles.relatorioTitleRetorno}>retorno das despesas</Text>
-                    <Text style={[styles.relatorioTxt, styles.despesa]}>{despesas.length}</Text>
-                </View>
             </View>
-</>)
+            <View style={styles.relatorioRetorno}>
+                <Text style={styles.relatorioTitleRetorno}>retorno do capital</Text>
+                <Text style={[styles.relatorioTxt, { color: corLucro }]}>R$ {lucroStr}</Text>
+                <Text style={styles.relatorioTitleRetorno}>retorno dos pagamentos</Text>
+                <Text style={[styles.relatorioTxt, styles.pagamento]}>R$ {despesaStr}</Text>
+                <Text style={styles.relatorioTitleRetorno}>retorno das despesas</Text>
+                <Text style={[styles.relatorioTxt, styles.despesa]}>{despesas.length}</Text>
+            </View>
+        </View>
+    </>)
 }
 
 const styles = StyleSheet.create({
