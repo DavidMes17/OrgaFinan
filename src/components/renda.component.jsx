@@ -24,7 +24,7 @@ export default function Renda() {
                 <Text style={styles.title}>Relatório de renda</Text>
             </View>
 
-            <View style={styles.relatorio}>
+            <View style={styles.relatorio}>                
                 <View style={styles.relatorioRetorno}>
                     <Text style={styles.relatorioTitleRetorno}>retorno do capital</Text>
                     <Text style={[styles.relatorioTxt, { color: corLucro }]}>R$ {lucroStr}</Text>

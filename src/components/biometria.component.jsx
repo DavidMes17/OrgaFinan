@@ -37,7 +37,7 @@ export default function Biometria({ navigation }) {
     }
 
     return (<>
-        <ImageBackground source={require('../assets/backgroundImage.jpg')} style={styles.biometriaCtn}>
+        <ImageBackground source={require('../assets/backgroundImage.jpeg')} style={styles.biometriaCtn}>
             <Text style={styles.biometriaTxt}>Acesse o melhor App de organização financeira com segurança</Text>
         </ImageBackground>
 
