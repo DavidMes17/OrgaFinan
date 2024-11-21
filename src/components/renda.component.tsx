@@ -1,24 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Pie, PolarChart } from "victory-native";
 
 export default function Renda() {
-
-    function randomNumber() {
-        return Math.floor(Math.random() * 26) + 125;
-      }
-      function generateRandomColor(): string {
-        // Generating a random number between 0 and 0xFFFFFF
-        const randomColor = Math.floor(Math.random() * 0xffffff);
-        // Converting the number to a hexadecimal string and padding with zeros
-        return `#${randomColor.toString(16).padStart(6, "0")}`;
-      }
-      const DATA = (numberPoints = 5) =>
-        Array.from({ length: numberPoints }, (_, index) => ({
-          value: randomNumber(),
-          color: generateRandomColor(),
-          label: `Label ${index + 1}`,
-        }));
     
         const despesas = [500, 500, 80, 0.5, 25];
         const dinheiro = 1350.63;
