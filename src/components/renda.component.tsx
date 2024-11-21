@@ -1,5 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Pie, PolarChart } from "victory-native";
+
+function randomNumber() {
+    return Math.floor(Math.random() * 26) + 125;
+  }
+  function generateRandomColor(): string {
+    // Generating a random number between 0 and 0xFFFFFF
+    const randomColor = Math.floor(Math.random() * 0xffffff);
+    // Converting the number to a hexadecimal string and padding with zeros
+    return `#${randomColor.toString(16).padStart(6, "0")}`;
+  }
+  const DATA = (numberPoints = 5) =>
+    Array.from({ length: numberPoints }, (_, index) => ({
+      value: randomNumber(),
+      color: generateRandomColor(),
+      label: `Label ${index + 1}`,
+    }));
 
 export default function Renda() {
     const despesas = [500, 500, 80, 0.5, 25];
@@ -24,7 +41,18 @@ export default function Renda() {
                 <Text style={styles.title}>Relatório de renda</Text>
             </View>
 
-            <View style={styles.relatorio}>                
+            <View style={styles.relatorio}>    
+            <View style={{ height: 300 }}>
+      <PolarChart
+        data={DATA} // 👈 specify your data
+        labelKey={"label"} // 👈 specify data key for labels
+        valueKey={"value"} // 👈 specify data key for values
+        colorKey={"color"} // 👈 specify data key for color
+      >
+        <Pie.Chart />
+      </PolarChart>
+    </View>
+                            
                 <View style={styles.relatorioRetorno}>
                     <Text style={styles.relatorioTitleRetorno}>retorno do capital</Text>
                     <Text style={[styles.relatorioTxt, { color: corLucro }]}>R$ {lucroStr}</Text>
